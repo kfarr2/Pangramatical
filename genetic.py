@@ -4,19 +4,24 @@ from pangrams import PangramFinder
 pg = PangramFinder()
 results = pg.run_search(10, 1, 10, False)[0]["pangram"]
 
-def optimize(pangram):
+def optimize(pangram, iterations):
     """
-    
+
     """
-    num_copies = len(pangram) # one set for swapping, one for removing
-    copies = list()
-    
-    for index in range(num_copies):
-        copy = swap(pangram, index)
-        copies.append(copy)
+    if iterations > 0:
+        num_copies = len(pangram) # one set for swapping, one for removing
+        copies = list()
 
-    
+        copies.append(pangram)
 
+        for index in range(num_copies):
+            copies.append(swap(pangram, index))
+            copies.append(remove(pangram, index))
+
+        scored = pg.score(copies)
+        return optimize(pg.get_top_scores(1, scored))
+    else:
+        return pangram
 
 def swap(pangram, index):
     # takes a string. breaks it into a list. swaps word at <index> with a random word
