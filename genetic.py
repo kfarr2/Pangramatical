@@ -1,4 +1,7 @@
+import random
+
 from pangrams import PangramFinder
+
 
 # Get initial pangram
 pg = PangramFinder()
@@ -24,9 +27,15 @@ def optimize(pangram, iterations):
         return pangram
 
 def swap(pangram, index):
-    # takes a string. breaks it into a list. swaps word at <index> with a random word
-    # TODO: All this shit
+    """
+    Swaps a word in a pangram at [index]
+    """
+    words = pangram.split()
+    words[index] = pg.words[random.randrange(0, len(pg.words))].lower()
+    return words
+
+# Test code
+swap(results, 1)
 
 def remove(pangram, index):
-    # TODO: All this shit
-
+    #TODO: This
