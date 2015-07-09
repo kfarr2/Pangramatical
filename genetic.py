@@ -19,6 +19,7 @@ def optimize(pangram):
 
 
 def swap(pangram, index):
+    # takes a string. breaks it into a list. swaps word at <index> with a random word
     # TODO: All this shit
 
 def remove(pangram, index):
