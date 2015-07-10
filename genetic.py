@@ -41,4 +41,4 @@ def remove(pangram, index):
 # Test code
 optimized = optimize(results, 100)
 score = int(pg.get_score(optimized)["current_score"])
-print("\nOPTIMIZED\n=========\nTotal\t\tScore\t\tGenetically Modified Pangram\n",score,"\t\t",int(score / 234 * 100),"%\t\t",optimized)
+print("\nOPTIMIZED\n=========\n\nTotal\t\tScore\t\tGenetically Modified Pangram\n",score,"\t\t",int(score / 234 * 100),"%\t\t",optimized, "\n\n")

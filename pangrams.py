@@ -156,10 +156,6 @@ class PangramFinder:
             print("\nSearch complete. ", str(len(pangrams)), " pangrams found.\nScoring...\n")
 
         scored = self.score(pangrams)
-
-        if verbose is True:
-            print("\nScoring complete.\nGenerating results. Please wait.")
-
         top_scores = self.get_top_scores(num_scores, scored)
 
         if verbose is True:
