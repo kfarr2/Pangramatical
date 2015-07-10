@@ -44,8 +44,11 @@ class PangramFinder:
         # load the standard dictionary
         dictionary = open("dictionary.json", 'r').read()
         words = list(json.loads(dictionary))
-        self.words = words
-        self.dictlength = len(words)
+        self.words = list()
+        for word in words:
+            if len(word) >= 2:
+                self.words.append(word)
+        self.dictlength = len(self.words)
 
     def all_chars(self):
         return list(chr(i + 97) for i in range(26))
@@ -91,6 +94,8 @@ class PangramFinder:
             count = pangram.count(c)
             if count > 1:
                 current_score = current_score - count + 1
+            if count == 0:
+                current_score = 0
         count = pangram.count('-')
         current_score -= (count * 50)
 
@@ -135,7 +140,7 @@ class PangramFinder:
     def run_search(self, time, num_scores, max_wordlength, verbose):
         new_words = []
         for word in self.words:
-            if len(word) < max_wordlength and len(word) > 2:
+            if len(word) < max_wordlength:
                     new_words.append(word.lower())
 
         self.dictlength = len(new_words)
@@ -166,7 +171,6 @@ class PangramFinder:
             if verbose is True:
                 print(str(score['current_score']) + "\t\t" + str(int((score['current_score'] / SCORE)*100)) + '%\t\t' + str(score["pangram"]) + '\n')
 
-        if verbose is not True:
-            return top_scores
+        return top_scores
 
 
